@@ -75,7 +75,21 @@ def usage():
 
 
 def banner():
-    print("Welcome")
+    
+    print(
+        "__________                                               .___\n"
+        "\______   \_____    ______ ________  _  _____________  __| _/\n"
+        "|     ___/\__  \  /  ___//  ___/\ \/ \/ /  _ \_  __ \/ __ | \n"
+        "|    |     / __ \_\___ \ \___ \  \     (  <_> )  | \/ /_/ | \n"
+        "|____|    (____  /____  >____  >  \/\_/ \____/|__|  \____ | \n"
+        "                \/     \/     \/                          \/ \n"
+        "_________                       __                           \n"
+        "\_   ___ \____________    ____ |  | __ ___________           \n"
+        "/    \  \/\_  __ \__  \ _/ ___\|  |/ // __ \_  __ \          \n"
+        "\     \____|  | \// __ \\  \___|    <\  ___/|  | \/          \n"
+        " \______  /|__|  (____  /\___  >__|_ \\___  >__|             \n"
+        "        \/            \/     \/     \/    \/    "
+    )
 
 def clear_scr():
     if platform.system() == "Windows":
@@ -129,9 +143,9 @@ def main():
         sys.exit(usage())
     if not sys.argv[5] in CHAR_SET:
         sys.exit(usage())
+    clear_scr()
     banner()
     check_hash_type()
-    clear_scr()
     print("="*80)
     for i in possible_combinations(sys.argv[5]):
         f = list_to_str(i)
