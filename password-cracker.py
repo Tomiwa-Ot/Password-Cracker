@@ -5,6 +5,7 @@ import hashlib
 import re
 from colorama import Fore, Style, Back
 import itertools
+from tqdm import tqdm
 
 HASH_LIST = (
     "md4",
@@ -41,7 +42,7 @@ ALPHA_LOWER_NUM = "abcdefghijklmnopqrstuvwxyz0123456789"
 ALPHA_CAPS_NUM = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
 ALPHA_CAPS_NUM_SEPCIAL ="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-_+=~`[]\{\}\\|:;'\"<>,./? "
 ALPHA_LOWER_NUM_SEPCIAL = "abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_+=~`[]\{\}\\|:;'\"<>,./? "
-ALL ="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_+=~`[]\{\}\\|:;'\"<>,./? "
+ALL = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_+=~`[]\{\}\\|:;'\"<>,./? "
 
 MD4_MD5_REGEX = re.compile(r"^[a-f0-9]{32}(:.+)?$", re.IGNORECASE)
 SHA_1_REGEX = re.compile(r"^[a-f0-9]{40}(:.+)?$", re.IGNORECASE)
@@ -99,7 +100,7 @@ def clear_scr():
 
 def success_print_result(passwd, h, r):
     if r == h:
-        print(Fore.GREEN + "Hash: {}\tPassword: {}".format(h, passwd))
+        print(Fore.GREEN + " Hash: {}\tPassword: {}\n".format(h, passwd))
         print(Style.RESET_ALL)
         print("="*80)
         sys.exit()
@@ -136,6 +137,7 @@ def list_to_str(l):
     s = ''.join(l)
     return(s)
 
+
 def main():
     if not sys.argv[1] in HASH_LIST:
         sys.exit(usage())
@@ -143,11 +145,36 @@ def main():
         sys.exit(usage())
     if not sys.argv[5] in CHAR_SET:
         sys.exit(usage())
+    if sys.argv[5] == "NUM":
+        use = NUM
+    elif sys.argv[5] == "NUM":
+        use = NUM_SPECIAL
+    elif sys.argv[5] == "ALPHA_CAPS":
+        use = ALPHA_CAPS
+    elif sys.argv[5] == "ALPHA_LOWER":
+        use = ALPHA_LOWER
+    elif sys.argv[5] == "ALPHA_CAPS_LOWER":
+        use = ALPHA_CAPS_LOWER
+    elif sys.argv[5] == "NUM":
+        use = ALPHA_CAPS_LOWER_NUM
+    elif sys.argv[5] == "NUM":
+        use = ALPHA_LOWER_SPECIAL
+    elif sys.argv[5] == "ALPHA_CAPS_SPECIAL":
+        use = ALPHA_CAPS_SPECIAL
+    elif sys.argv[5] == "ALPHA_LOWER_NUM":
+        use = ALPHA_LOWER_NUM
+    elif sys.argv[5] == "ALPHA_CAPS_NUM":
+        use = ALPHA_CAPS_NUM
+    elif sys.argv[5] == "ALPHA_CAPS_NUM_SPECIAL":
+        use = ALPHA_CAPS_NUM_SEPCIAL
+    elif sys.argv[5] == "ALL":
+        use = ALL
     clear_scr()
     banner()
     check_hash_type()
     print("="*80)
-    for i in possible_combinations(sys.argv[5]):
+    for i in possible_combinations(use):
+        #tqdm(range(z, len(use) + 1))
         f = list_to_str(i)
         if sys.argv[1] == "md5":
             result = hashlib.md5(f.encode('utf-8')).hexdigest()
