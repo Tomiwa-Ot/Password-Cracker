@@ -5,7 +5,7 @@ A tool written in Python to crack MD4, MD5, SHA-1, SHA-256 or SHA-512 hashes usi
 ```console
 pip install tqdm
 ```
-
+# Syntax Guide
 ```console
 root@pc:~# python password-cracker.py
 [+] Usage: python bruteforce.py <type of hash> <hash> <minimun length> <maximum length> <character set>
