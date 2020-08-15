@@ -176,9 +176,9 @@ def main():
         use = ALPHA_LOWER
     elif sys.argv[5] == "ALPHA_CAPS_LOWER":
         use = ALPHA_CAPS_LOWER
-    elif sys.argv[5] == "NUM":
+    elif sys.argv[5] == "ALPHA_CAPS_LOWER_NUM":
         use = ALPHA_CAPS_LOWER_NUM
-    elif sys.argv[5] == "NUM":
+    elif sys.argv[5] == "ALPHA_LOWER_SPECIAL":
         use = ALPHA_LOWER_SPECIAL
     elif sys.argv[5] == "ALPHA_CAPS_SPECIAL":
         use = ALPHA_CAPS_SPECIAL
