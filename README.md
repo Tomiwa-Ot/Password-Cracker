@@ -26,3 +26,4 @@ root@pc:~# python password-cracker.py
         ALPHA_CAPS_NUM_SEPCIAL: ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-_+=~`[]\{\}\|:;'"<>,./?
         ALL:    ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_+=~`[]\{\}\|:;'"<>,./?
 ```
+![Example](/image.JPG)
