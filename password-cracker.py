@@ -6,6 +6,7 @@ import re
 from colorama import Fore, Style, Back
 import itertools
 from tqdm import tqdm
+import time
 
 HASH_LIST = (
     "md4",
@@ -137,6 +138,26 @@ def list_to_str(l):
     s = ''.join(l)
     return(s)
 
+def printProgressBar (iteration, total, prefix = '', suffix = '', decimals = 1, length = 100, fill = '█', printEnd = "\r"):
+    """
+    Call in a loop to create terminal progress bar
+    @params:
+        iteration   - Required  : current iteration (Int)
+        total       - Required  : total iterations (Int)
+        prefix      - Optional  : prefix string (Str)
+        suffix      - Optional  : suffix string (Str)
+        decimals    - Optional  : positive number of decimals in percent complete (Int)
+        length      - Optional  : character length of bar (Int)
+        fill        - Optional  : bar fill character (Str)
+        printEnd    - Optional  : end character (e.g. "\r", "\r\n") (Str)
+    """
+    percent = ("{0:." + str(decimals) + "f}").format(100 * (iteration / float(total)))
+    filledLength = int(length * iteration // total)
+    bar = fill * filledLength + '-' * (length - filledLength)
+    print(f'\r{prefix} |{bar}| {percent}% {suffix}', end = printEnd)
+    # Print New Line on Complete
+    if iteration == total: 
+        print()
 
 def main():
     if not sys.argv[1] in HASH_LIST:
@@ -147,7 +168,7 @@ def main():
         sys.exit(usage())
     if sys.argv[5] == "NUM":
         use = NUM
-    elif sys.argv[5] == "NUM":
+    elif sys.argv[5] == "NUM_SPECIAL":
         use = NUM_SPECIAL
     elif sys.argv[5] == "ALPHA_CAPS":
         use = ALPHA_CAPS
@@ -173,6 +194,8 @@ def main():
     banner()
     check_hash_type()
     print("="*80)
+    #z = 0
+    #printProgressBar(0, len(sys.argv[5]), prefix = 'Progress:', suffix = 'Complete', length = 50)
     for i in possible_combinations(use):
         #tqdm(range(z, len(use) + 1))
         f = list_to_str(i)
@@ -187,6 +210,8 @@ def main():
             success_print_result(f, sys.argv[2], result)
         elif sys.argv[1] == "sha512":
             success_print_result(f, sys.argv[2], result)
+        #printProgressBar(z + 1, len(sys.argv[5]), prefix = 'Progress:', suffix = 'Complete', length = 50)
+        #z += 1
     print(Fore.RED + "No match was found")
     print(Style.RESET_ALL)
 
