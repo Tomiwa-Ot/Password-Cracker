@@ -79,18 +79,18 @@ def usage():
 def banner():
     
     print(
-        "__________                                               .___\n"
-        "\______   \_____    ______ ________  _  _____________  __| _/\n"
-        "|     ___/\__  \  /  ___//  ___/\ \/ \/ /  _ \_  __ \/ __ | \n"
-        "|    |     / __ \_\___ \ \___ \  \     (  <_> )  | \/ /_/ | \n"
-        "|____|    (____  /____  >____  >  \/\_/ \____/|__|  \____ | \n"
-        "                \/     \/     \/                          \/ \n"
-        "_________                       __                           \n"
-        "\_   ___ \____________    ____ |  | __ ___________           \n"
-        "/    \  \/\_  __ \__  \ _/ ___\|  |/ // __ \_  __ \          \n"
-        "\     \____|  | \// __ \\  \___|    <\  ___/|  | \/          \n"
-        " \______  /|__|  (____  /\___  >__|_ \\___  >__|             \n"
-        "        \/            \/     \/     \/    \/    "
+        "\t__________                                               .___\n"
+        "\t\______   \_____    ______ ________  _  _____________  __| _/\n"
+        "\t|     ___/\__  \  /  ___//  ___/\ \/ \/ /  _ \_  __ \/ __ | \n"
+        "\t|    |     / __ \_\___ \ \___ \  \     (  <_> )  | \/ /_/ | \n"
+        "\t|____|    (____  /____  >____  >  \/\_/ \____/|__|  \____ | \n"
+        "\t                \/     \/     \/                          \/ \n"
+        "\t_________                       __                           \n"
+        "\t\_   ___ \____________    ____ |  | __ ___________           \n"
+        "\t/    \  \/\_  __ \__  \ _/ ___\|  |/ // __ \_  __ \          \n"
+        "\t\     \____|  | \// __ \\  \___|    <\  ___/|  | \/          \n"
+        "\t \______  /|__|  (____  /\___  >__|_ \\___  >__|             \n"
+        "\t        \/            \/     \/     \/    \/    "
     )
 
 def clear_scr():
@@ -138,26 +138,6 @@ def list_to_str(l):
     s = ''.join(l)
     return(s)
 
-def printProgressBar (iteration, total, prefix = '', suffix = '', decimals = 1, length = 100, fill = '█', printEnd = "\r"):
-    """
-    Call in a loop to create terminal progress bar
-    @params:
-        iteration   - Required  : current iteration (Int)
-        total       - Required  : total iterations (Int)
-        prefix      - Optional  : prefix string (Str)
-        suffix      - Optional  : suffix string (Str)
-        decimals    - Optional  : positive number of decimals in percent complete (Int)
-        length      - Optional  : character length of bar (Int)
-        fill        - Optional  : bar fill character (Str)
-        printEnd    - Optional  : end character (e.g. "\r", "\r\n") (Str)
-    """
-    percent = ("{0:." + str(decimals) + "f}").format(100 * (iteration / float(total)))
-    filledLength = int(length * iteration // total)
-    bar = fill * filledLength + '-' * (length - filledLength)
-    print(f'\r{prefix} |{bar}| {percent}% {suffix}', end = printEnd)
-    # Print New Line on Complete
-    if iteration == total: 
-        print()
 
 def main():
     if not sys.argv[1] in HASH_LIST:
@@ -194,10 +174,7 @@ def main():
     banner()
     check_hash_type()
     print("="*80)
-    #z = 0
-    #printProgressBar(0, len(sys.argv[5]), prefix = 'Progress:', suffix = 'Complete', length = 50)
     for i in possible_combinations(use):
-        #tqdm(range(z, len(use) + 1))
         f = list_to_str(i)
         if sys.argv[1] == "md5":
             result = hashlib.md5(f.encode('utf-8')).hexdigest()
@@ -210,8 +187,6 @@ def main():
             success_print_result(f, sys.argv[2], result)
         elif sys.argv[1] == "sha512":
             success_print_result(f, sys.argv[2], result)
-        #printProgressBar(z + 1, len(sys.argv[5]), prefix = 'Progress:', suffix = 'Complete', length = 50)
-        #z += 1
     print(Fore.RED + "No match was found")
     print(Style.RESET_ALL)
 
