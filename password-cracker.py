@@ -140,9 +140,9 @@ def list_to_str(l):
 
 
 def main():
-    if not sys.argv[1] in HASH_LIST:
-        sys.exit(usage())
     if len(sys.argv) != 6:
+        sys.exit(usage())
+    if not sys.argv[1] in HASH_LIST:
         sys.exit(usage())
     if not sys.argv[5] in CHAR_SET:
         sys.exit(usage())
