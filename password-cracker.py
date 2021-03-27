@@ -5,7 +5,7 @@ import hashlib
 import re
 from colorama import Fore, Style, Back
 import itertools
-from tqdm import tqdm
+import bcrypt
 import time
 
 HASH_LIST = (
